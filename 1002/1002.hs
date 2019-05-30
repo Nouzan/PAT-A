@@ -31,8 +31,7 @@ polyAdd x y
                 | otherwise      = ([(trank, t)], x, ys)
 
 polySum :: [Poly] -> Poly
-polySum [] = []
-polySum (x : xs) = polyAdd x (polySum xs)
+polySum = foldr polyAdd []
 
 main :: IO ()
 main = do interact $ printf "%s\n" . fromPoly . polySum . map(toPoly) . lines
