@@ -1,10 +1,10 @@
 addCommaEveryThree :: String -> String
-addCommaEveryThree = fst . go ""
-    where go s t
-           | t == ""   = (s, t)
-           | s == ""   = go u t'
-           | otherwise = go (s ++ "," ++ u) t'
-           where (u, t') = splitAt 3 t
+addCommaEveryThree "" = ""
+addCommaEveryThree s  = t ++ comma s' ++ addCommaEveryThree s'
+    where
+        (t, s') = splitAt 3 s
+        comma "" = ""
+        comma _  = ","
 
 formatInteger :: Integer -> String
 formatInteger x
